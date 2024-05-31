@@ -9,6 +9,12 @@
 #ifndef MC_VFS_UTILVFS_H
 #define MC_VFS_UTILVFS_H
 
+#include <config.h>
+
+#if !defined (HAVE_UTIMENSAT) && defined (HAVE_UTIME_H)
+#include <utime.h>
+#endif
+
 #include <sys/stat.h>
 
 #include "lib/global.h"
@@ -61,4 +67,15 @@ gboolean vfs_parse_month (const char *str, struct tm *tim);
 int vfs_parse_filedate (int idx, time_t * t);
 
 /*** inline functions ****************************************************************************/
+
+static inline int
+vfs_utime (const char *path, mc_timesbuf_t *times)
+{
+#ifdef HAVE_UTIMENSAT
+    return utimensat (AT_FDCWD, path, *times, AT_SYMLINK_NOFOLLOW);
+#else
+    return utime (path, times);
+#endif
+}
+
 #endif

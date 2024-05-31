@@ -7,14 +7,18 @@
 #ifndef MC__VFS_VFS_H
 #define MC__VFS_VFS_H
 
+#include <config.h>             /* HAVE_UTIMENSAT */
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h>             /* DIR */
+
 #ifdef HAVE_UTIMENSAT
 #include <sys/time.h>
 #elif defined (HAVE_UTIME_H)
 #include <utime.h>
 #endif
+
 #include <stdio.h>
 #include <unistd.h>
 #include <stddef.h>
