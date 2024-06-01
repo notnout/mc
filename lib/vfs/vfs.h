@@ -7,7 +7,7 @@
 #ifndef MC__VFS_VFS_H
 #define MC__VFS_VFS_H
 
-#include <config.h>             /* HAVE_UTIMENSAT */
+#include <config.h>             /* HAVE_UTIMENSAT, HAVE_UTIME_H */
 
 #include <sys/types.h>
 #include <sys/stat.h>
