@@ -18,11 +18,14 @@ AC_DEFUN([mc_WITH_INTERNAL_EDIT], [
 
     dnl ASpell support.
     AC_ARG_ENABLE([aspell],
-        AS_HELP_STRING([--enable-aspell], [Enable aspell support for internal editor @<:@no@:>@]),
+        AS_HELP_STRING(
+        [--enable-aspell@<:@=prefix@:>@],
+        [Enable aspell support for internal editor @<:@no@:>@]),
         [
             if test "x$enableval" = xno; then
                 enable_aspell=no
             else
+                test -d "$enable_aspell/include" && CPPFLAGS="$CPPFLAGS -I$enable_aspell/include"
                 enable_aspell=yes
             fi
         ],
