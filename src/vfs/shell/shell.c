@@ -1487,7 +1487,7 @@ shell_utime (const vfs_path_t *vpath, mc_timesbuf_t *times)
     me = VFS_CLASS (vfs_path_get_last_path_vfs (vpath));
 
     ret = shell_send_command (me, super, OPT_FLUSH, SHELL_SUPER (super)->scr_utime,
-                              "SHELL_FILENAME=%s SHELL_FILEATIME=%llu SHELL_FILEMTIME=%llu "
+                              "SHELL_FILENAME=%s SHELL_FILEATIME=%ju SHELL_FILEMTIME=%ju "
                               "SHELL_TOUCHATIME=%s SHELL_TOUCHMTIME=%s SHELL_TOUCHATIME_W_NSEC=\"%s\" "
                               "SHELL_TOUCHMTIME_W_NSEC=\"%s\";\n", rpath, (uintmax_t) atime.tv_sec,
                               (uintmax_t) mtime.tv_sec, utcatime, utcmtime, utcatime_w_nsec,
