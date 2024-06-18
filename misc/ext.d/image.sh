@@ -52,8 +52,10 @@ do_open_action() {
             fi
         elif which see >/dev/null 2>&1; then
             (see "${MC_EXT_FILENAME}" &)
-        else
+        elif which zgv >/dev/null 2>&1; then
             (zgv "${MC_EXT_FILENAME}" &)
+        else
+            (open "${MC_EXT_FILENAME}" &)
         fi
         ;;
     esac
